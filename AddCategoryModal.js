@@ -28,6 +28,12 @@ const AddCategoryModal = (props) => {
     }
   };
 
+  if (fData.error || fData.success) {
+    setTimeout(() => {
+      setFdata({ ...fData, success: false, error: false });
+    }, 2000);
+  }
+
   const submitForm = async (e) => {
     dispatch({ type: "loading", payload: true });
     // Reset and prevent the form
@@ -35,11 +41,8 @@ const AddCategoryModal = (props) => {
     e.target.reset();
 
     if (!fData.cImage) {
-      return setFdata({ ...fData, error: "Please upload a category image" });
       dispatch({ type: "loading", payload: false });
-      setTimeout(() => {
-        return setFdata({ ...fData, error: false });
-      }, 2000);
+      return setFdata({ ...fData, error: "Please upload a category image" });
     }
 
     try {

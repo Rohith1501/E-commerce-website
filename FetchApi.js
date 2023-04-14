@@ -1,36 +1,41 @@
 import axios from "axios";
 const apiURL = process.env.REACT_APP_API_URL;
 
-export const getUserById = async (uId) => {
+export const DashboardData = async () => {
   try {
-    let res = await axios.post(`${apiURL}/api/user/signle-user`, { uId });
+    let res = await axios.post(`${apiURL}/api/customize/dashboard-data`);
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const updatePersonalInformationFetch = async (userData) => {
+export const getSliderImages = async () => {
   try {
-    let res = await axios.post(`${apiURL}/api/user/edit-user`, userData);
+    let res = await axios.get(`${apiURL}/api/customize/get-slide-image`);
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getOrderByUser = async (uId) => {
+export const postUploadImage = async (formData) => {
   try {
-    let res = await axios.post(`${apiURL}/api/order/order-by-user`, { uId });
+    let res = await axios.post(
+      `${apiURL}/api/customize/upload-slide-image`,
+      formData
+    );
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const updatePassword = async (formData) => {
+export const postDeleteImage = async (id) => {
   try {
-    let res = await axios.post(`${apiURL}/api/user/change-password`, formData);
+    let res = await axios.post(`${apiURL}/api/customize/delete-slide-image`, {
+      id,
+    });
     return res.data;
   } catch (error) {
     console.log(error);
