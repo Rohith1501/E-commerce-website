@@ -1,41 +1,36 @@
 import axios from "axios";
 const apiURL = process.env.REACT_APP_API_URL;
 
-export const DashboardData = async () => {
+export const getUserById = async (uId) => {
   try {
-    let res = await axios.post(`${apiURL}/api/customize/dashboard-data`);
+    let res = await axios.post(`${apiURL}/api/user/signle-user`, { uId });
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getSliderImages = async () => {
+export const updatePersonalInformationFetch = async (userData) => {
   try {
-    let res = await axios.get(`${apiURL}/api/customize/get-slide-image`);
+    let res = await axios.post(`${apiURL}/api/user/edit-user`, userData);
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const postUploadImage = async (formData) => {
+export const getOrderByUser = async (uId) => {
   try {
-    let res = await axios.post(
-      `${apiURL}/api/customize/upload-slide-image`,
-      formData
-    );
+    let res = await axios.post(`${apiURL}/api/order/order-by-user`, { uId });
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const postDeleteImage = async (id) => {
+export const updatePassword = async (formData) => {
   try {
-    let res = await axios.post(`${apiURL}/api/customize/delete-slide-image`, {
-      id,
-    });
+    let res = await axios.post(`${apiURL}/api/user/change-password`, formData);
     return res.data;
   } catch (error) {
     console.log(error);
